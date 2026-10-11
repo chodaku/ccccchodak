@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>My Homepage</title>
+<style>
+:root{--bg:#fff;--fg:#000;--mut:#767676;--line:#d9d9d9;--soft:#f2f2f2}
+[data-t=dark]{--bg:#000;--fg:#fff;--mut:#9a9a9a;--line:#333;--soft:#161616}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:2px;padding:.45em .7em}
+button{cursor:pointer}button:hover{background:var(--soft)}
+.pri{background:var(--fg);color:var(--bg);border-color:var(--fg)}.pri:hover{background:var(--mut)}
+:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+#hd{position:relative;display:flex;align-items:flex-end;background:#000;color:#fff;padding:calc(36px + env(safe-area-inset-top,0px)) 20px 36px;overflow:hidden}
+.bg,.ov{position:absolute;inset:0}.bg{background-size:cover;background-position:center}
+.ht{position:relative;width:100%;max-width:1000px;margin:0 auto}
+.ht h1{margin:0;font-size:clamp(28px,6vw,52px);letter-spacing:-.03em;line-height:1.15}
+.ht p{margin:.4em 0 0;color:#ccc}
+#nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);display:flex;overflow-x:auto;padding:0 12px}
+#nav button{border:0;border-bottom:2px solid transparent;background:none;border-radius:0;padding:.8em .9em;white-space:nowrap}
+#nav button.on{border-color:var(--fg);font-weight:700}
+.sp{flex:1}
+main{max-width:1000px;margin:0 auto;padding:28px 20px 80px}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 16px}.bar h2{margin:0;font-size:22px}
+.ed-only{display:none!important}body.ed .ed-only{display:flex!important}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.card{border:1px solid var(--line)}
+.th{aspect-ratio:4/5;background:var(--soft);cursor:pointer;overflow:hidden}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{height:100%;display:grid;place-items:center;padding:12px;color:var(--mut);text-align:center}
+.cb{padding:12px}.cb h3{margin:0 0 6px;font-size:16px;cursor:pointer}
+dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0;font-size:13px}dt{color:var(--mut)}dd{margin:0;word-break:break-all}
+.act{gap:6px;margin-top:10px}.mut{color:var(--mut)}
+dialog{width:min(920px,94vw);max-height:90vh;border:1px solid var(--fg);background:var(--bg);color:var(--fg);padding:0}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.vb,.fm{padding:22px}.cl{position:sticky;top:8px;float:right;margin:8px}
+.vi{max-width:100%;display:block;margin:14px 0}
+.lg{width:100%;height:70vh;border:1px solid var(--line);background:#fff}
+pre.lg{background:var(--soft);color:var(--fg);padding:12px;overflow:auto;white-space:pre-wrap;height:auto;max-height:70vh}
+.md h1,.md h2,.md h3,.md h4{line-height:1.3;margin:1.4em 0 .5em}.md p{margin:.2em 0 .9em}
+.md blockquote{margin:1em 0;padding:.2em 1em;border-left:3px solid var(--fg);color:var(--mut)}
+.md pre{background:var(--soft);padding:12px;overflow:auto}.md code{background:var(--soft);padding:.1em .3em}.md pre code{padding:0}
+.md img{max-width:100%}.md hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.wr{font-family:"Noto Serif KR","Nanum Myeongjo",Batang,serif;line-height:1.95}.wr p{text-indent:var(--ind,0)}
+.spo{background:var(--fg);color:var(--fg)}.spo:hover{color:var(--bg)}
+.fm{display:grid;gap:12px}.fm label{display:grid;gap:4px}.fm label>span,.pvw>span{font-size:13px;color:var(--mut)}
+.fm input,.fm textarea,.fm select{width:100%}.fm textarea{resize:vertical}
+.tb{display:flex;flex-wrap:wrap;gap:4px}.tb button{padding:.15em .6em;font-size:13px}
+.pvw{border:1px solid var(--line);padding:12px;max-height:50vh;overflow:auto}
+.intro{max-width:640px}
+.stage{position:relative;overflow-x:clip;border-top:1px solid var(--line);margin-top:24px}
+body.ed .stage{background:repeating-linear-gradient(45deg,transparent 0 10px,var(--soft) 10px 11px)}
+.stk{position:absolute}.stk img{width:100%;display:block;pointer-events:none;user-select:none}
+body.ed .stk{outline:1px dashed var(--mut);cursor:move;touch-action:none}
+.x,.rz{position:absolute;background:var(--fg);color:var(--bg)}
+.x{top:-10px;right:-10px;width:22px;height:22px;align-items:center;justify-content:center;cursor:pointer}
+.rz{right:-7px;bottom:-7px;width:14px;height:14px;cursor:nwse-resize}
+.pl{border:1px solid var(--line);padding:14px;margin-top:24px}
+.ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctl b{flex:1;min-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pl ol{margin:10px 0 0;padding-left:1.4em}.pl li{cursor:pointer;color:var(--mut)}.pl li.on{color:var(--fg);font-weight:700}
+.set h3{margin:2em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.3em}
+.row{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin:8px 0}
+@media(max-width:560px){.row{grid-template-columns:1fr;gap:2px}}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
+@media(prefers-reduced-motion:reduce){#fx{display:none}}
+</style></head><body>
+<header id="hd"></header><nav id="nav"></nav><main id="m"></main>
+<canvas id="fx"></canvas><dialog id="dlg"></dialog>
+<script>
+const $=s=>document.querySelector(s);
+const h=(t,a={},...c)=>{const e=document.createElement(t);for(const k in a)k=='class'?e.className=a[k]:e[k]=a[k];c.flat(9).forEach(x=>x!=null&&x!==false&&e.append(x));return e};
+const H=html=>{const d=h('div',{class:'md'});d.innerHTML=html;return d};
+if(/[?&]edit/.test(location.search))localStorage.owner=1;
+const OWNER=!!localStorage.owner;
+const DEF={site:{title:'My Homepage',sub:'캐릭터와 커미션, TRPG 로그를 모아둔 곳',img:'',h:220,align:'left',dim:45,gray:1,intro:'## 환영합니다\n설정 탭에서 이 소개글을 바꿀 수 있어요. 마크다운을 쓸 수 있습니다.'},theme:'light',fx:{type:'none',amount:50},click:true,vol:.5,mvol:.7,pl:[],stk:[],stageH:420,chars:[],art:[],writes:[],logs:[]};
+const NAV=[['home','홈'],['chars','캐릭터'],['art','그림 커미션'],['writes','글 커미션'],['logs','TRPG 로그']];
+if(OWNER)NAV.push(['set','설정']);
+const SEC={
+chars:{t:'캐릭터 페어',f:[['name','페어 이름'],['members','캐릭터 이름'],['imgs','외관 이미지 (여러 장 가능)','imgs'],['desc','설정 (마크다운)','area']]},
+art:{t:'그림 커미션',f:[['title','제목'],['uid','커미션주 ID'],['type','커미션 타입'],['price','가격'],['imgs','이미지','imgs'],['desc','메모','area']]},
+writes:{t:'글 커미션',f:[['title','제목'],['uid','커미션주 ID'],['type','커미션 타입'],['price','가격'],['indent','들여쓰기','sel',['0','1em','2em','3em'],'1em'],['body','본문 (마크다운)','md']]},
+logs:{t:'TRPG 로그',f:[['title','제목'],['plat','플랫폼','sel',['Roll20','CCFolia','기타']],['sys','시스템 / 날짜'],['file','로그 파일 (.html / .txt)','file']]}};
+const LB={uid:'ID',type:'타입',price:'가격',members:'멤버',plat:'플랫폼',sys:'정보'};
+let S,page=location.hash.slice(1)||'home';
+
+/* storage: IndexedDB (no size worry) + optional data.json from the repo */
+const DB=()=>new Promise(r=>{const q=indexedDB.open('hp',1);q.onupgradeneeded=()=>q.result.createObjectStore('s');q.onsuccess=()=>r(q.result)});
+const idbGet=async()=>{const d=await DB();return new Promise(r=>{const q=d.transaction('s').objectStore('s').get('d');q.onsuccess=()=>r(q.result)})};
+const save=async()=>{const d=await DB();d.transaction('s','readwrite').objectStore('s').put(S,'d')};
+const merge=d=>({...structuredClone(DEF),...d,site:{...DEF.site,...d?.site},fx:{...DEF.fx,...d?.fx}});
+const rd=(f,txt)=>new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);txt?x.readAsText(f):x.readAsDataURL(f)});
+const img=async(f,max=1400)=>{if(/gif|svg/.test(f.type))return rd(f);const i=new Image();i.src=await rd(f);await i.decode();const s=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);return c.toDataURL(f.type=='image/png'?'image/png':'image/jpeg',.88)};
+
+/* markdown */
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const inl=s=>esc(s).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,'<img alt="$1" src="$2">').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(m,t,u)=>/^(https?:|\/|#|\.)/.test(u)?`<a href="${u}" target="_blank" rel="noopener">${t}</a>`:t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/(^|\W)\*(.+?)\*/g,'$1<i>$2</i>').replace(/~~(.+?)~~/g,'<s>$1</s>').replace(/\|\|(.+?)\|\|/g,'<span class="spo">$1</span>');
+const LI=/^\s*([-*]|\d+\.)\s/;
+const md=t=>{const L=(t||'').replace(/\r/g,'').split('\n'),o=[];let i=0,m;
+while(i<L.length){const l=L[i];
+if(/^```/.test(l)){const b=[];i++;while(i<L.length&&!/^```/.test(L[i]))b.push(L[i++]);i++;o.push('<pre><code>'+esc(b.join('\n'))+'</code></pre>')}
+else if(m=l.match(/^(#{1,4})\s+(.*)/)){o.push(`<h${m[1].length}>${inl(m[2])}</h${m[1].length}>`);i++}
+else if(/^(---+|\*\*\*+)\s*$/.test(l)){o.push('<hr>');i++}
+else if(/^>/.test(l)){const b=[];while(i<L.length&&/^>/.test(L[i]))b.push(L[i++].replace(/^>\s?/,''));o.push('<blockquote>'+md(b.join('\n'))+'</blockquote>')}
+else if(LI.test(l)){const T=/^\s*\d/.test(l)?'ol':'ul',b=[];while(i<L.length&&LI.test(L[i]))b.push('<li>'+inl(L[i++].replace(LI,''))+'</li>');o.push(`<${T}>${b.join('')}</${T}>`)}
+else if(!l.trim())i++;
+else{const b=[];while(i<L.length&&L[i].trim()&&!/^(#{1,4}\s|```|>|(---+|\*\*\*+)\s*$)/.test(L[i]))b.push(inl(L[i++]));o.push('<p>'+b.join('<br>')+'</p>')}}
+return o.join('')};
+
+/* click sound */
+let AC;
+addEventListener('pointerdown',()=>{if(!S?.click)return;AC??=new AudioContext();const t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.setValueAtTime(900,t);o.frequency.exponentialRampToValueAtTime(300,t+.05);g.gain.setValueAtTime(S.vol*.15+.0001,t);g.gain.exponentialRampToValueAtTime(.001,t+.06);o.connect(g).connect(AC.destination);o.start();o.stop(t+.07)});
+
+/* rain / snow */
+const cv=$('#fx'),cx=cv.getContext('2d');let P=[];
+const fit=()=>{cv.width=innerWidth;cv.height=innerHeight};addEventListener('resize',fit);fit();
+const fxInit=()=>{P=S.fx.type=='none'?[]:Array.from({length:S.fx.amount*3},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,v:Math.random()+.5,r:Math.random()*2+1}))};
+(function loop(){cx.clearRect(0,0,cv.width,cv.height);if(S&&P.length){const rain=S.fx.type=='rain';cx.strokeStyle=cx.fillStyle=S.theme=='dark'?'rgba(255,255,255,.55)':'rgba(70,70,70,.5)';
+for(const p of P){cx.beginPath();if(rain){cx.moveTo(p.x,p.y);cx.lineTo(p.x-2,p.y+12*p.v);cx.stroke();p.y+=14*p.v;p.x-=1.2}else{cx.arc(p.x,p.y,p.r,0,7);cx.fill();p.y+=p.v;p.x+=Math.sin(p.y/40+p.r)*.5}
+if(p.y>innerHeight){p.y=-10;p.x=Math.random()*innerWidth}if(p.x<0)p.x=innerWidth}}
+requestAnimationFrame(loop)})();
+
+/* music */
+const au=new Audio();let ti=0,PR=()=>{};
+au.onplay=au.onpause=()=>PR();au.onended=()=>play(ti+1);
+const play=i=>{ti=(i+S.pl.length)%S.pl.length;au.src=S.pl[ti].src;au.play().catch(()=>{})};
+function player(){const w=h('div',{class:'pl'});if(!S.pl.length){w.append('설정 탭에서 곡을 추가하면 플레이어가 나타납니다.');return w}
+const tt=h('b'),pb=h('button',{onclick:()=>au.src?(au.paused?au.play():au.pause()):play(ti)}),ls=h('ol');
+S.pl.forEach((p,i)=>ls.append(h('li',{onclick:()=>play(i)},p.name)));
+PR=()=>{tt.textContent=S.pl[ti]?.name||'';pb.textContent=au.paused?'재생':'일시정지';[...ls.children].forEach((l,i)=>l.className=au.src&&i==ti?'on':'')};PR();
+w.append(h('div',{class:'ctl'},h('button',{onclick:()=>play(ti-1)},'이전'),pb,h('button',{onclick:()=>play(ti+1)},'다음'),tt,h('input',{type:'range',min:0,max:1,step:.05,value:S.mvol,oninput:e=>{S.mvol=au.volume=+e.target.value},onchange:save})),ls);return w}
+
+/* pieces */
+const go=p=>{page=p;location.hash=p;scrollTo(0,0);draw()};
+function head(){const s=S.site,e=$('#hd'),b=h('div',{class:'bg'}),t=h('div',{class:'ht'},h('h1',{},s.title),h('p',{},s.sub));
+b.style.backgroundImage=s.img?`url("${s.img}")`:'none';b.style.filter=s.gray?'grayscale(1)':'none';t.style.textAlign=s.align;
+e.style.minHeight=s.h+'px';e.replaceChildren(b,h('div',{class:'ov',style:`background:rgba(0,0,0,${s.dim/100})`}),t);document.title=s.title}
+function nav(){const n=$('#nav');n.replaceChildren(...NAV.map(([k,l])=>h('button',{class:k==page?'on':'',onclick:()=>go(k)},l)),h('span',{class:'sp'}));
+if(OWNER)n.append(h('button',{class:document.body.classList.contains('ed')?'on':'',onclick:e=>{document.body.classList.toggle('ed');e.target.classList.toggle('on')}},'편집 모드'))}
+function draw(){document.documentElement.dataset.t=S.theme;head();nav();const m=$('#m');m.replaceChildren();
+if(SEC[page])list(m,page);else if(page=='set'&&OWNER)settings(m);else home(m)}
+const meta=it=>h('dl',{},...Object.keys(LB).filter(k=>it[k]).flatMap(k=>[h('dt',{},LB[k]),h('dd',{},it[k])]));
+function list(m,key){m.append(h('div',{class:'bar'},h('h2',{},SEC[key].t),h('span',{class:'sp'}),h('button',{class:'pri ed-only',onclick:()=>form(key)},'새로 추가')));
+const g=h('div',{class:'grid'});if(!S[key].length)g.append(h('p',{class:'mut'},'아직 항목이 없어요. 편집 모드를 켜고 추가해 보세요.'));
+S[key].forEach(it=>{const im=it.imgs?.[0],ti=it.title||it.name||'제목 없음',v=()=>view(key,it);
+g.append(h('article',{class:'card'},h('div',{class:'th',onclick:v},im?h('img',{src:im,loading:'lazy',alt:''}):h('div',{class:'ph'},ti)),
+h('div',{class:'cb'},h('h3',{onclick:v},ti),meta(it),h('div',{class:'ed-only act'},h('button',{onclick:()=>form(key,it)},'수정'),h('button',{onclick:()=>{if(confirm('삭제할까요?')){S[key]=S[key].filter(z=>z!==it);save();draw()}}},'삭제')))))});
+m.append(g)}
+const dlg=$('#dlg');dlg.onclick=e=>{if(e.target==dlg)dlg.close()};
+const show=n=>{dlg.replaceChildren(h('button',{class:'cl',onclick:()=>dlg.close()},'닫기'),n);dlg.showModal()};
+function view(key,it){const b=h('div',{class:'vb'},h('h2',{},it.title||it.name),meta(it));
+(it.imgs||[]).forEach(s=>b.append(h('img',{src:s,class:'vi',alt:''})));
+if(it.desc)b.append(H(md(it.desc)));
+if(it.body){const d=H(md(it.body));d.classList.add('wr');d.style.setProperty('--ind',it.indent||'0');b.append(d)}
+if(it.file)b.append(/<(html|body|div|p|span|table)\b/i.test(it.file.slice(0,3000))?h('iframe',{class:'lg',sandbox:'',srcdoc:it.file}):h('pre',{class:'lg'},it.file));
+show(b)}
+const wrap=(el,a,b='')=>{const s=el.selectionStart,e=el.selectionEnd;el.value=el.value.slice(0,s)+a+el.value.slice(s,e)+b+el.value.slice(e);el.focus();el.selectionStart=s+a.length;el.selectionEnd=e+a.length;el.dispatchEvent(new Event('input'))};
+function form(key,it){const d=it||{},f=h('div',{class:'fm'}),get={};
+SEC[key].f.forEach(([k,l,t,o,df])=>{let el;
+if(t=='area'||t=='md')el=h('textarea',{rows:t=='md'?16:6,value:d[k]||''});
+else if(t=='sel')el=h('select',{},...o.map(v=>h('option',{value:v,selected:v==(d[k]??df??o[0])},v)));
+else if(t=='imgs')el=h('input',{type:'file',accept:'image/*',multiple:true});
+else if(t=='file')el=h('input',{type:'file',accept:'.html,.htm,.txt,.log'});
+else el=h('input',{value:d[k]||''});
+get[k]=[t,el];f.append(h('label',{},h('span',{},l),el));
+if(t=='md'){const pv=H(''),up=()=>{pv.innerHTML=md(el.value);pv.classList.add('wr');pv.style.setProperty('--ind',get.indent[1].value)};el.oninput=up;get.indent[1].onchange=up;up();
+f.append(h('div',{class:'tb'},...[['굵게','**','**'],['기울임','*','*'],['취소선','~~','~~'],['제목','## '],['인용','> '],['목록','- '],['코드','`','`'],['링크','[','](https://)'],['스포일러','||','||'],['구분선','\n---\n'],['전각 공백','　']].map(([n,a,b])=>h('button',{type:'button',onclick:()=>wrap(el,a,b)},n))),h('div',{class:'pvw'},h('span',{},'미리보기'),pv))}});
+f.append(h('div',{class:'bar'},h('button',{onclick:()=>dlg.close()},'취소'),h('button',{class:'pri',onclick:async()=>{const n={...d,id:d.id||Date.now()};
+for(const k in get){const[t,el]=get[k];if(t=='imgs'){if(el.files.length)n.imgs=await Promise.all([...el.files].map(x=>img(x)))}else if(t=='file'){if(el.files[0])n.file=await rd(el.files[0],1)}else n[k]=el.value}
+it?S[key][S[key].indexOf(it)]=n:S[key].unshift(n);await save();dlg.close();draw()}},'저장')));show(f)}
+
+/* home + stickers */
+function home(m){m.append(H(md(S.site.intro)));m.firstChild.classList.add('intro');
+const st=h('div',{class:'stage'});st.style.minHeight=S.stageH+'px';S.stk.forEach(k=>st.append(sticker(k,st)));
+m.append(h('div',{class:'bar ed-only',style:'margin-top:16px'},h('label',{},h('input',{type:'file',accept:'image/*',multiple:true,onchange:async e=>{for(const f of e.target.files)S.stk.push({src:await img(f,900),x:5+Math.random()*50,y:20+Math.random()*120,w:22});await save();draw()}})),h('span',{class:'mut'},'스티커를 드래그해서 옮기고, 오른쪽 아래 모서리로 크기를 조절하세요.')),st,player())}
+function sticker(k,st){const d=h('div',{class:'stk'},h('img',{src:k.src,alt:''}),h('b',{class:'ed-only x',onclick:async()=>{S.stk=S.stk.filter(z=>z!==k);await save();draw()}},'×'),h('i',{class:'ed-only rz'}));
+const pos=()=>{d.style.left=k.x+'%';d.style.top=k.y+'px';d.style.width=k.w+'%'};pos();
+d.addEventListener('pointerdown',e=>{if(!document.body.classList.contains('ed')||e.target.classList.contains('x'))return;e.preventDefault();d.setPointerCapture(e.pointerId);
+const rz=e.target.classList.contains('rz'),W=st.getBoundingClientRect().width,sx=e.clientX,sy=e.clientY,o={...k};
+const mv=v=>{const dx=(v.clientX-sx)/W*100;if(rz)k.w=Math.max(4,o.w+dx);else{k.x=o.x+dx;k.y=o.y+v.clientY-sy}pos()};
+const up=()=>{d.removeEventListener('pointermove',mv);d.removeEventListener('pointerup',up);save()};d.addEventListener('pointermove',mv);d.addEventListener('pointerup',up)});return d}
+
+/* settings */
+function settings(m){const s=S.site,R=(l,...e)=>h('label',{class:'row'},h('span',{},l),...e),
+I=(o,k,t='text',x={})=>h('input',{type:t,...x,value:o[k],oninput:e=>{o[k]=t=='text'?e.target.value:+e.target.value;head()},onchange:save}),
+sel=(o,k,opts,fn)=>h('select',{onchange:e=>{o[k]=e.target.value;save();fn?.()}},...opts.map(([v,l])=>h('option',{value:v,selected:v==o[k]},l))),
+chk=(o,k,fn)=>h('input',{type:'checkbox',checked:!!o[k],onchange:e=>{o[k]=e.target.checked;save();fn?.()}}),
+T=x=>h('h3',{},x);
+const nm=h('input',{placeholder:'곡 이름'}),ur=h('input',{placeholder:'mp3 주소 (https://… 또는 music/a.mp3)'}),pl=h('ol');
+const plr=()=>{pl.replaceChildren(...S.pl.map((p,i)=>h('li',{},p.name+' ',h('button',{onclick:()=>{S.pl.splice(i,1);save();plr()}},'삭제'))))};plr();
+m.append(h('div',{class:'set'},
+T('헤더'),R('제목',I(s,'title')),R('부제',I(s,'sub')),
+R('배경 이미지',h('input',{type:'file',accept:'image/*',onchange:async e=>{s.img=await img(e.target.files[0],1800);await save();head()}})),
+R('',h('button',{onclick:()=>{s.img='';save();head()}},'이미지 제거')),
+R('높이',I(s,'h','range',{min:120,max:480})),R('어둡게',I(s,'dim','range',{min:0,max:85})),
+R('정렬',sel(s,'align',[['left','왼쪽'],['center','가운데']],head)),R('이미지 흑백',chk(s,'gray',head)),
+T('홈'),R('소개글 (마크다운)',h('textarea',{rows:5,value:s.intro,onchange:e=>{s.intro=e.target.value;save()}})),R('스티커 영역 높이',I(S,'stageH','range',{min:200,max:1000})),
+T('화면'),R('테마',sel(S,'theme',[['light','라이트'],['dark','다크']],draw)),
+R('날씨 효과',sel(S.fx,'type',[['none','없음'],['rain','비'],['snow','눈']],fxInit)),
+R('효과 양',h('input',{type:'range',min:10,max:150,value:S.fx.amount,oninput:e=>{S.fx.amount=+e.target.value;fxInit()},onchange:save})),
+T('소리'),R('클릭음',chk(S,'click')),R('클릭음 볼륨',I(S,'vol','range',{min:0,max:1,step:.05})),
+T('플레이리스트'),pl,R('곡 추가',nm,ur),R('',h('button',{onclick:()=>{if(!ur.value)return;S.pl.push({name:nm.value||ur.value.split('/').pop(),src:ur.value});save();plr();nm.value=ur.value=''}},'주소로 추가')),
+R('파일로 추가',h('input',{type:'file',accept:'audio/*',multiple:true,onchange:async e=>{for(const f of e.target.files)S.pl.push({name:f.name,src:await rd(f)});save();plr()}})),
+T('데이터'),h('div',{class:'bar'},
+h('button',{class:'pri',onclick:()=>{const a=h('a',{href:URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'})),download:'data.json'});a.click()}},'data.json 내보내기'),
+h('label',{},h('input',{type:'file',accept:'.json',onchange:async e=>{S=merge(JSON.parse(await rd(e.target.files[0],1)));await save();fxInit();draw()}})),
+h('button',{onclick:async()=>{if(confirm('이 브라우저의 모든 데이터를 지울까요?')){S=merge();await save();fxInit();draw()}}},'초기화'))))}
+
+(async()=>{let d=await idbGet().catch(()=>0);if(!d)d=await fetch('data.json').then(r=>r.json()).catch(()=>0);
+S=merge(d);au.volume=S.mvol;fxInit();draw()})();
+</script></body></html>
